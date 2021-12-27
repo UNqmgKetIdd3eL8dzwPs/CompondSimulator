@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using CompoundSimulator.Library;
 
@@ -6,24 +7,18 @@ namespace CompoundSimulator.TestClient
 {
     class Program
     {
+        public static Dictionary<string, Token> Market = new Dictionary<string, Token>()
+        {
+            {"EUR", new Token { Symbol = "EUR", CurrentPrice = 1,}},
+            {"CRO", new Token { Symbol = "CRO", CurrentPrice = 0.5222m, DecimalPlaces = 3}}, 
+        };
+
         static void Main(string[] args)
         {
-            var euro = new Token()
-            {
-                Name = "EUR",
-                CurrentPrice = 1,
-            };
+            var croDeposit = new Crypto(4000, Market["CRO"]);
+            var euroDeposit = new Crypto(1234, Market["EUR"]);
 
-            var cro = new Token()
-            {
-                Name = "CRO",
-                DecimalPlaces = 3,
-                CurrentPrice = 0.5222m,
-            };
-
-            Console.WriteLine($"CRO price is {cro.GetPriceIn(euro)} {euro.Name}");
-            Console.WriteLine($"EUR price is {euro.GetPriceIn(cro)} {cro.Name}");
-            Console.WriteLine($"EUR price is {euro.GetPriceStringIn(cro)} {cro.Name}");
+            Console.WriteLine($"{croDeposit} + {euroDeposit} == {(euroDeposit + croDeposit).ConvertTo(Market["CRO"])}");
         }
     }
 }
