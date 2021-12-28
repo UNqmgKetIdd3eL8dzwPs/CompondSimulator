@@ -7,5 +7,6 @@ namespace CompoundSimulator.Library.Interfaces
         public void Initialize(IInvestmentStrategyState state);
         public Crypto Total { get; }
         public Crypto ExecuteForSolution(IInvestmentStrategySolution solution, int numberOfDays);
+        public IInvestmentStrategySolution GenerateRandomSolution(int numberOfDays);
     }
 }

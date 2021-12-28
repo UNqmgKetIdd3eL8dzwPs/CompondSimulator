@@ -80,5 +80,10 @@ namespace CompoundSimulator.TestClient.Strategies
 
             return Total;
         }
+
+        public IInvestmentStrategySolution GenerateRandomSolution(int numberOfDays)
+        {
+            return ProvideLiquidityAndStakeSolution.NewRandomSolution(numberOfDays);
+        }
     }
 }
